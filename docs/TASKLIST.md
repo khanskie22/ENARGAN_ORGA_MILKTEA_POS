@@ -10,11 +10,11 @@ Status key: `[ ]` Not started, `[~]` In progress, `[x]` Completed
 
 ## Milestone 2: Products and cart
 
-- [ ] Display all required hard-coded products and Philippine peso prices.
-- [ ] Add products to the cart.
-- [ ] Increase and decrease item quantities without allowing quantities below one.
-- [ ] Remove items from the cart.
-- [ ] Calculate item subtotals and the order total automatically.
+- [x] Display all required hard-coded products and Philippine peso prices.
+- [x] Add products to the cart.
+- [x] Increase and decrease item quantities without allowing quantities below one.
+- [x] Remove items from the cart.
+- [x] Calculate item subtotals and the order total automatically.
 
 ## Milestone 3: Payment and receipt
 

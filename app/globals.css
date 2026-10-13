@@ -71,6 +71,29 @@ button:focus-visible, input:focus-visible { outline: 3px solid rgba(29, 91, 69, 
 .empty-cart-icon { width: 62px; height: 62px; display: grid; place-items: center; border: 1px dashed #aeb9b3; border-radius: 20px; color: var(--green); background: #f3f7ed; font-size: 1.7rem; }
 .empty-cart h3 { margin: 18px 0 7px; font-size: 1rem; }
 .empty-cart p { max-width: 230px; margin: 0; color: var(--muted); font-size: 0.83rem; line-height: 1.55; }
+.cart-list { flex: 1; max-height: 390px; overflow-y: auto; margin: 0; padding: 8px 2px 8px 0; list-style: none; scrollbar-width: thin; }
+.cart-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.cart-item-visual { flex: 0 0 44px; width: 44px; height: 50px; display: grid; place-items: center; border-radius: 11px; font-size: 0.67rem; font-weight: 900; }
+.cart-item-visual--amber { background: #f4dfb4; color: #7d4e20; }
+.cart-item-visual--green { background: #dfe8bd; color: #506027; }
+.cart-item-visual--purple { background: #e2d3e7; color: #65456f; }
+.cart-item-visual--pink { background: #f7d8d5; color: #9b4f55; }
+.cart-item-visual--brown { background: #e8d3bd; color: #6d472b; }
+.cart-item-visual--blue { background: #d7e7eb; color: #3d6974; }
+.cart-item-details { flex: 1; min-width: 0; }
+.cart-item-title-row, .cart-item-footer { display: flex; align-items: start; justify-content: space-between; gap: 8px; }
+.cart-item-title-row h3 { margin: 0; font-size: 0.85rem; line-height: 1.3; }
+.cart-item-title-row p { margin: 4px 0 0; color: var(--muted); font-size: 0.72rem; }
+.remove-button { padding: 2px; border: 0; color: var(--danger); background: transparent; font-size: 0.67rem; font-weight: 750; }
+.remove-button:hover { text-decoration: underline; }
+.cart-item-footer { align-items: center; margin-top: 10px; }
+.cart-item-footer strong { font-size: 0.83rem; }
+.quantity-control { display: inline-flex; align-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: white; }
+.quantity-control button { width: 28px; height: 26px; display: grid; place-items: center; border: 0; color: var(--green); background: transparent; font-weight: 900; }
+.quantity-control button:hover:not(:disabled) { background: #edf3e8; }
+.quantity-control button:disabled { cursor: not-allowed; color: #bdc4c0; }
+.quantity-control output { min-width: 28px; text-align: center; font-size: 0.75rem; font-weight: 850; }
+.sr-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 .order-total { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--line); }
 .order-total span { font-weight: 700; }
 .order-total strong { font-size: 1.55rem; letter-spacing: -0.04em; }
