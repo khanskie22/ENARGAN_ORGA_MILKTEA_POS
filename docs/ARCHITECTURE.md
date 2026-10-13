@@ -8,7 +8,8 @@
 - `components/ProductCard.tsx` presents one product and its Add action.
 - `components/CartItem.tsx` presents quantity and removal controls.
 - `components/Receipt.tsx` renders the completed transaction in an accessible dialog.
-- `lib/products.ts` defines the hard-coded catalog and peso formatter.
+- `lib/products.ts` defines the hard-coded catalog, local product-image paths, and peso formatter.
+- `public/images/products/` stores the six product photos served by Next.js.
 - `lib/pos.ts` holds deterministic cart totals, payment validation, reference generation, and receipt snapshot helpers.
 
 ## Planned state
@@ -38,7 +39,7 @@ Submitting the cash form passes the raw string, total, and cart status to `valid
 | Component | Responsibility |
 | --- | --- |
 | `Home` | Owns transaction state and coordinates all user actions. |
-| `ProductCard` | Displays one catalog item and exposes an accessible Add action. |
-| `CartItem` | Displays one order line, subtotal, safe quantity controls, and removal. |
+| `ProductCard` | Displays one catalog item with its local product photo and exposes an accessible Add action. |
+| `CartItem` | Displays one order line with a product thumbnail, subtotal, safe quantity controls, and removal. |
 | `Receipt` | Displays the immutable completed-sale snapshot and New Transaction action. |
 

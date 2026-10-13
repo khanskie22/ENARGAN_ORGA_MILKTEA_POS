@@ -17,7 +17,7 @@ Automated coverage verifies cart arithmetic, item count, all payment-validation 
 
 | ID | Test | Steps | Expected result | Result |
 | --- | --- | --- | --- | --- |
-| M-01 | Product display | Open the POS. | All six required products, sizes, prices, and Add buttons are visible. | Pass |
+| M-01 | Product display | Open the POS. | All six required products, uploaded product photos, sizes, prices, and Add buttons are visible. | Pass |
 | M-02 | Add products | Add Classic Milk Tea and Bottled Water. | Both lines appear with quantity 1 and correct unit prices. | Pass |
 | M-03 | Increase quantity | Increase Classic Milk Tea from 1 to 2. | Quantity becomes 2; line subtotal becomes ₱118.00. | Pass |
 | M-04 | Decrease boundary | Decrease Classic Milk Tea to 1. | Quantity becomes 1 and the decrement button is disabled. | Pass |

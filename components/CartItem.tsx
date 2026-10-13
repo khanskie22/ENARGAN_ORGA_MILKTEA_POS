@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { CartItem as CartItemType } from "@/lib/pos";
 import { calculateSubtotal } from "@/lib/pos";
 import { formatPeso } from "@/lib/products";
@@ -14,8 +15,14 @@ export function CartItem({ item, onDecrease, onIncrease, onRemove }: CartItemPro
 
   return (
     <li className="cart-item">
-      <div className={`cart-item-visual cart-item-visual--${product.tone}`} aria-hidden="true">
-        {product.abbreviation}
+      <div className="cart-item-visual">
+        <Image
+          className={`cart-item-image${product.id === "water" ? " cart-item-image--contain" : ""}`}
+          src={product.image}
+          alt=""
+          fill
+          sizes="44px"
+        />
       </div>
       <div className="cart-item-details">
         <div className="cart-item-title-row">

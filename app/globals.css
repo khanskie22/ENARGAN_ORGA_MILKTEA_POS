@@ -48,15 +48,10 @@ button:focus-visible, input:focus-visible { outline: 3px solid rgba(29, 91, 69, 
 .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .product-card { min-width: 0; overflow: hidden; background: var(--paper); border: 1px solid rgba(23, 37, 32, 0.08); border-radius: 22px; box-shadow: 0 8px 24px rgba(35, 48, 41, 0.04); transition: transform 160ms ease, box-shadow 160ms ease; }
 .product-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(35, 48, 41, 0.09); }
-.product-visual { min-height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.product-visual--amber { background: #f4dfb4; color: #7d4e20; }
-.product-visual--green { background: #dfe8bd; color: #506027; }
-.product-visual--purple { background: #e2d3e7; color: #65456f; }
-.product-visual--pink { background: #f7d8d5; color: #9b4f55; }
-.product-visual--brown { background: #e8d3bd; color: #6d472b; }
-.product-visual--blue { background: #d7e7eb; color: #3d6974; }
-.cup-lid { width: 68px; height: 8px; border-radius: 5px 5px 2px 2px; background: currentColor; opacity: 0.75; }
-.cup-body { width: 58px; height: 74px; display: grid; place-items: center; margin-top: 3px; border: 3px solid currentColor; border-top-width: 1px; border-radius: 2px 2px 13px 13px; font-size: 0.8rem; font-weight: 900; letter-spacing: 0.05em; background: rgba(255,255,255,0.28); }
+.product-visual { position: relative; min-height: 150px; overflow: hidden; background: #f1eee7; }
+.product-image { object-fit: cover; transition: transform 220ms ease; }
+.product-card:hover .product-image { transform: scale(1.035); }
+.product-image--contain { object-fit: contain; padding: 8px; background: white; }
 .product-info { padding: 16px; }
 .product-info h3 { min-height: 42px; margin: 0; font-size: 0.97rem; line-height: 1.35; }
 .product-info p { margin: 5px 0 16px; color: var(--muted); font-size: 0.78rem; }
@@ -73,13 +68,9 @@ button:focus-visible, input:focus-visible { outline: 3px solid rgba(29, 91, 69, 
 .empty-cart p { max-width: 230px; margin: 0; color: var(--muted); font-size: 0.83rem; line-height: 1.55; }
 .cart-list { flex: 1; max-height: 300px; overflow-y: auto; margin: 0; padding: 8px 2px 8px 0; list-style: none; scrollbar-width: thin; }
 .cart-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
-.cart-item-visual { flex: 0 0 44px; width: 44px; height: 50px; display: grid; place-items: center; border-radius: 11px; font-size: 0.67rem; font-weight: 900; }
-.cart-item-visual--amber { background: #f4dfb4; color: #7d4e20; }
-.cart-item-visual--green { background: #dfe8bd; color: #506027; }
-.cart-item-visual--purple { background: #e2d3e7; color: #65456f; }
-.cart-item-visual--pink { background: #f7d8d5; color: #9b4f55; }
-.cart-item-visual--brown { background: #e8d3bd; color: #6d472b; }
-.cart-item-visual--blue { background: #d7e7eb; color: #3d6974; }
+.cart-item-visual { position: relative; flex: 0 0 44px; width: 44px; height: 50px; overflow: hidden; border-radius: 11px; background: #f1eee7; }
+.cart-item-image { object-fit: cover; }
+.cart-item-image--contain { object-fit: contain; padding: 3px; background: white; }
 .cart-item-details { flex: 1; min-width: 0; }
 .cart-item-title-row, .cart-item-footer { display: flex; align-items: start; justify-content: space-between; gap: 8px; }
 .cart-item-title-row h3 { margin: 0; font-size: 0.85rem; line-height: 1.3; }
@@ -108,7 +99,7 @@ button:focus-visible, input:focus-visible { outline: 3px solid rgba(29, 91, 69, 
 .payment-hint, .payment-error { min-height: 16px; margin: 6px 0 10px; font-size: 0.69rem; }
 .payment-hint { color: var(--muted); }
 .payment-error { color: var(--danger); font-weight: 700; }
-.payment-error + .pay-button { margin-top: -26px; }
+.payment-error + .pay-button { margin-top: 4px; }
 .pay-button { width: 100%; min-height: 50px; border: 0; border-radius: 14px; color: white; background: var(--green); font-weight: 850; }
 .pay-button:hover { background: var(--green-dark); }
 .pay-button:disabled { cursor: not-allowed; color: #929a96; background: #e7e9e6; }
