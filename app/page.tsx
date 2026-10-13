@@ -57,6 +57,7 @@ export default function Home() {
     event.preventDefault();
     const validation = validatePayment(payment, total, cart.length > 0);
     if (!validation.valid) {
+      setFeedback("");
       setPaymentError(validation.message);
       return;
     }
@@ -126,7 +127,7 @@ export default function Home() {
               ))}
             </ul>
           )}
-          <p className="sr-status" role="status" aria-live="polite">{feedback}</p>
+          {feedback && <p className="action-feedback" role="status" aria-live="polite">{feedback}</p>}
           <div className="order-total"><span>Total</span><strong>{formatPeso(total)}</strong></div>
           <form className="payment-form" onSubmit={confirmPayment} noValidate>
             <label htmlFor="cash-payment">Cash received</label>
@@ -135,8 +136,10 @@ export default function Home() {
               <input
                 id="cash-payment"
                 name="cash-payment"
-                type="text"
+                type="number"
                 inputMode="decimal"
+                min="0"
+                step="0.01"
                 autoComplete="off"
                 placeholder="0.00"
                 value={payment}

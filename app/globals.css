@@ -84,7 +84,7 @@ button:focus-visible, input:focus-visible { outline: 3px solid rgba(29, 91, 69, 
 .quantity-control button:hover:not(:disabled) { background: #edf3e8; }
 .quantity-control button:disabled { cursor: not-allowed; color: #bdc4c0; }
 .quantity-control output { min-width: 28px; text-align: center; font-size: 0.75rem; font-weight: 850; }
-.sr-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+.action-feedback { margin: 10px 0 0; padding: 9px 11px; border: 1px solid rgba(29, 91, 69, 0.16); border-radius: 10px; color: var(--green-dark); background: rgba(215, 236, 159, 0.24); font-size: 0.74rem; font-weight: 700; line-height: 1.4; }
 .order-total { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--line); }
 .order-total span { font-weight: 700; }
 .order-total strong { font-size: 1.55rem; letter-spacing: -0.04em; }

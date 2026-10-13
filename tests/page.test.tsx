@@ -12,6 +12,9 @@ describe("POS transaction flow", () => {
     await user.click(screen.getByRole("button", { name: "Add Classic Milk Tea to cart" }));
     expect(screen.getByText("1 item")).toBeInTheDocument();
     expect(screen.getByText("₱59.00 each")).toBeInTheDocument();
+    const actionFeedback = screen.getByText("Classic Milk Tea added to the order.");
+    expect(actionFeedback).toHaveAttribute("role", "status");
+    expect(actionFeedback).toBeVisible();
 
     await user.click(screen.getByRole("button", { name: "Increase Classic Milk Tea quantity" }));
     expect(screen.getByText("2 items")).toBeInTheDocument();
@@ -24,9 +27,11 @@ describe("POS transaction flow", () => {
     expect(screen.getByRole("alert")).toHaveTextContent("Enter the cash amount received.");
 
     const payment = screen.getByLabelText("Cash received");
+    expect(payment).toHaveAttribute("type", "number");
+    expect(payment).toHaveAttribute("min", "0");
+    expect(payment).toHaveAttribute("step", "0.01");
     await user.type(payment, "abc");
-    await user.click(screen.getByRole("button", { name: "Confirm payment" }));
-    expect(screen.getByRole("alert")).toHaveTextContent("Enter a valid numeric cash amount.");
+    expect(payment).toHaveValue(null);
 
     await user.clear(payment);
     await user.type(payment, "50");
@@ -45,7 +50,7 @@ describe("POS transaction flow", () => {
     await user.click(within(receipt).getByRole("button", { name: "Start new transaction" }));
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     expect(screen.getByText("Your cart is empty")).toBeInTheDocument();
-    expect(screen.getByLabelText("Cash received")).toHaveValue("");
+    expect(screen.getByLabelText("Cash received")).toHaveValue(null);
   });
 
   it("removes a cart item", async () => {
