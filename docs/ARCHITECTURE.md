@@ -25,3 +25,20 @@ Product actions update cart state. Pure derived helpers calculate item count, su
 
 Submitting the cash form passes the raw string, total, and cart status to `validatePayment`. A valid result supplies the numeric amount and change. `createReceipt` then makes a copied snapshot of the current cart and calculated figures, preventing later state changes from altering the completed receipt. Starting a new transaction clears the cart, cash input, feedback, error, and receipt state.
 
+## Validation and calculations
+
+- `calculateSubtotal` multiplies a product’s hard-coded price by its quantity.
+- `calculateTotal` reduces all line subtotals into one total.
+- `validatePayment` checks the empty-cart condition first, then blank, non-numeric, negative, and insufficient cash in that order.
+- A successful validation returns the parsed cash amount and `amountPaid - total` change.
+- `createTransactionReference` creates `CC-YYYYMMDD-HHMMSS` from the confirmation time.
+
+## Component responsibilities
+
+| Component | Responsibility |
+| --- | --- |
+| `Home` | Owns transaction state and coordinates all user actions. |
+| `ProductCard` | Displays one catalog item and exposes an accessible Add action. |
+| `CartItem` | Displays one order line, subtotal, safe quantity controls, and removal. |
+| `Receipt` | Displays the immutable completed-sale snapshot and New Transaction action. |
+

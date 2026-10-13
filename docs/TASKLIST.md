@@ -28,7 +28,7 @@ Status key: `[ ]` Not started, `[~]` In progress, `[x]` Completed
 ## Milestone 4: Verification and documentation
 
 - [x] Add automated tests for cart calculations, payment validation, receipt generation, and reset behavior.
-- [ ] Complete REQUIREMENTS.md, ARCHITECTURE.md, TESTING.md, and AI_USAGE.md.
-- [ ] Create the root README.md.
-- [ ] Run the standard checks and confirm the application builds and runs.
-- [ ] Record final manual test results and mark only verified tasks complete.
+- [x] Complete REQUIREMENTS.md, ARCHITECTURE.md, TESTING.md, and AI_USAGE.md.
+- [x] Create the root README.md.
+- [x] Run the standard checks and confirm the application builds and runs.
+- [x] Record final manual test results and mark only verified tasks complete.
