@@ -7,18 +7,21 @@
 - `app/globals.css` contains the responsive visual system and component styles.
 - `components/ProductCard.tsx` presents one product and its Add action.
 - `components/CartItem.tsx` presents quantity and removal controls.
-- `components/Receipt.tsx` will render the completed transaction.
+- `components/Receipt.tsx` renders the completed transaction in an accessible dialog.
 - `lib/products.ts` defines the hard-coded catalog and peso formatter.
-- `lib/pos.ts` holds deterministic cart totals and will also contain payment and receipt helpers.
+- `lib/pos.ts` holds deterministic cart totals, payment validation, reference generation, and receipt snapshot helpers.
 
 ## Planned state
 
 - `cart`: ordered cart line items and quantities.
-- `payment`: the cash input as text so blank and invalid text can be validated.
+- `payment`: the cash input as text so blank and invalid text can be validated before conversion.
+- `paymentError`: a specific validation message announced by assistive technology.
 - `feedback`: the current success or error message.
 - `receipt`: an immutable snapshot created only after a valid confirmation.
 
 ## Data flow
 
-Product actions update cart state. Pure derived helpers calculate item count, subtotals, and total from the cart on each render. Cart updates are immutable: adding an existing product increments it, quantity changes are clamped to a minimum of one, and removal filters out a line. Payment confirmation will validate the cart and payment, then snapshot the cart and calculated figures into a receipt. Starting a new transaction will clear all transaction state.
+Product actions update cart state. Pure derived helpers calculate item count, subtotals, and total from the cart on each render. Cart updates are immutable: adding an existing product increments it, quantity changes are clamped to a minimum of one, and removal filters out a line.
+
+Submitting the cash form passes the raw string, total, and cart status to `validatePayment`. A valid result supplies the numeric amount and change. `createReceipt` then makes a copied snapshot of the current cart and calculated figures, preventing later state changes from altering the completed receipt. Starting a new transaction clears the cart, cash input, feedback, error, and receipt state.
 

@@ -1,14 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 import { CartItem } from "@/components/CartItem";
 import { ProductCard } from "@/components/ProductCard";
-import { calculateItemCount, calculateTotal, type CartItem as CartItemType } from "@/lib/pos";
+import { Receipt } from "@/components/Receipt";
+import {
+  calculateItemCount,
+  calculateTotal,
+  createReceipt,
+  validatePayment,
+  type CartItem as CartItemType,
+  type ReceiptData,
+} from "@/lib/pos";
 import { PRODUCTS, formatPeso, type Product } from "@/lib/products";
 
 export default function Home() {
   const [cart, setCart] = useState<CartItemType[]>([]);
   const [feedback, setFeedback] = useState("");
+  const [payment, setPayment] = useState("");
+  const [paymentError, setPaymentError] = useState("");
+  const [receipt, setReceipt] = useState<ReceiptData | null>(null);
   const total = calculateTotal(cart);
   const itemCount = calculateItemCount(cart);
 
@@ -23,6 +34,7 @@ export default function Home() {
       return [...currentCart, { product, quantity: 1 }];
     });
     setFeedback(`${product.name} added to the order.`);
+    setPaymentError("");
   }
 
   function updateQuantity(productId: string, change: number) {
@@ -32,11 +44,34 @@ export default function Home() {
         : item,
     ));
     setFeedback("Order quantity updated.");
+    setPaymentError("");
   }
 
   function removeFromCart(product: Product) {
     setCart((currentCart) => currentCart.filter((item) => item.product.id !== product.id));
     setFeedback(`${product.name} removed from the order.`);
+    setPaymentError("");
+  }
+
+  function confirmPayment(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const validation = validatePayment(payment, total, cart.length > 0);
+    if (!validation.valid) {
+      setPaymentError(validation.message);
+      return;
+    }
+
+    setPaymentError("");
+    setFeedback("Payment confirmed successfully.");
+    setReceipt(createReceipt(cart, validation.amountPaid));
+  }
+
+  function startNewTransaction() {
+    setCart([]);
+    setPayment("");
+    setPaymentError("");
+    setFeedback("");
+    setReceipt(null);
   }
 
   return (
@@ -93,9 +128,34 @@ export default function Home() {
           )}
           <p className="sr-status" role="status" aria-live="polite">{feedback}</p>
           <div className="order-total"><span>Total</span><strong>{formatPeso(total)}</strong></div>
-          <button className="pay-button" type="button" disabled={cart.length === 0}>Review payment</button>
+          <form className="payment-form" onSubmit={confirmPayment} noValidate>
+            <label htmlFor="cash-payment">Cash received</label>
+            <div className={`payment-input-wrap${paymentError ? " payment-input-wrap--error" : ""}`}>
+              <span aria-hidden="true">₱</span>
+              <input
+                id="cash-payment"
+                name="cash-payment"
+                type="text"
+                inputMode="decimal"
+                autoComplete="off"
+                placeholder="0.00"
+                value={payment}
+                onChange={(event) => {
+                  setPayment(event.target.value);
+                  setPaymentError("");
+                }}
+                aria-describedby={paymentError ? "payment-error" : "payment-hint"}
+                aria-invalid={Boolean(paymentError)}
+                disabled={cart.length === 0}
+              />
+            </div>
+            <p id="payment-hint" className="payment-hint">Cash payment only</p>
+            {paymentError && <p id="payment-error" className="payment-error" role="alert">{paymentError}</p>}
+            <button className="pay-button" type="submit" disabled={cart.length === 0}>Confirm payment</button>
+          </form>
         </aside>
       </div>
+      {receipt && <Receipt receipt={receipt} onNewTransaction={startNewTransaction} />}
     </main>
   );
 }

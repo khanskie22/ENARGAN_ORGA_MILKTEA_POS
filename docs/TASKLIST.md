@@ -18,16 +18,16 @@ Status key: `[ ]` Not started, `[~]` In progress, `[x]` Completed
 
 ## Milestone 3: Payment and receipt
 
-- [ ] Accept a numeric cash payment.
-- [ ] Validate blank, non-numeric, negative, and insufficient payments.
-- [ ] Prevent payment confirmation when the cart is empty or payment is invalid.
-- [ ] Calculate change and display payment confirmation feedback.
-- [ ] Generate a digital receipt with a transaction reference and complete totals.
-- [ ] Reset all transaction state with New Transaction.
+- [x] Accept a numeric cash payment.
+- [x] Validate blank, non-numeric, negative, and insufficient payments.
+- [x] Prevent payment confirmation when the cart is empty or payment is invalid.
+- [x] Calculate change and display payment confirmation feedback.
+- [x] Generate a digital receipt with a transaction reference and complete totals.
+- [x] Reset all transaction state with New Transaction.
 
 ## Milestone 4: Verification and documentation
 
-- [ ] Add automated tests for cart calculations, payment validation, receipt generation, and reset behavior.
+- [x] Add automated tests for cart calculations, payment validation, receipt generation, and reset behavior.
 - [ ] Complete REQUIREMENTS.md, ARCHITECTURE.md, TESTING.md, and AI_USAGE.md.
 - [ ] Create the root README.md.
 - [ ] Run the standard checks and confirm the application builds and runs.
