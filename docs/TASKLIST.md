@@ -4,9 +4,9 @@ Status key: `[ ]` Not started, `[~]` In progress, `[x]` Completed
 
 ## Milestone 1: Planning and project setup
 
-- [~] Document the Scenario 3 requirements and development plan.
-- [ ] Initialize the Next.js App Router project with TypeScript.
-- [ ] Create the base desktop-friendly POS layout.
+- [x] Document the Scenario 3 requirements and development plan.
+- [x] Initialize the Next.js App Router project with TypeScript.
+- [x] Create the base desktop-friendly POS layout.
 
 ## Milestone 2: Products and cart
 
